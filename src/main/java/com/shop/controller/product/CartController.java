@@ -2,20 +2,19 @@ package com.shop.controller.product;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shop.service.product.CartService;
+import com.shop.service.product.ProductBuyService;
 import com.shop.vo.Cart_Tbl;
+import com.shop.vo.Like_Tbl;
+import com.shop.vo.Prod_Tbl;
 
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +27,8 @@ import lombok.extern.slf4j.Slf4j;
 public class CartController {
 	@Setter(onMethod_ = @Autowired)
 	private CartService cartService;
+	@Setter(onMethod_ = @Autowired)
+	private ProductBuyService productService;
 
 	
 	@RequestMapping("/cart")
@@ -78,7 +79,7 @@ public class CartController {
 	public String update(@RequestParam int[] quantity, @RequestParam int [] p_no, HttpSession session) {
 		// 메개변수타입과 매개변수명, mapper명과 인터페이스명 동일 
 		
-		String u_id = (String) session.getAttribute("u_id");
+		String u_id = (String) session.getAttribute("id");
 		// 레코드 개수 만큼 반복문 돔
 		
 		for(int i = 0; i < p_no.length; i++) {
@@ -101,29 +102,37 @@ public class CartController {
 	}
 	
 
-	/*
-	 * @RequestMapping("/insert_cart") //세부적인 url mapping
-	 * 
-	 * public String insertCart(@ModelAttribute Cart_Tbl cart, HttpSession session)
-	 * {
-	 * 
-	 * System.out.println("장바구니 잘 저장 되나요?");
-	 * 
-	 * String u_id=(String)session.getAttribute("u_id");
-	 * 
-	 * 
-	 * if(u_id==null) {
-	 * 
-	 * System.out.println("아이디 값이 뭔데"+ u_id); //로그인하지 않은 상태이면 로그인 화면으로 이동 return
-	 * 
-	 * return "redirect:/carshop/login"; }
-	 * 
-	 * cart.setU_id(u_id); cartService.insertCart(cart); //장바구니 테이블에 저장됨
-	 * 
-	 * return "redirect:/carshop/like"; //장바구니 목록으로 이동 }
-	 * 
-	 * }
-	 */
+	
+	  @RequestMapping("/insert_cart") //세부적인 url mapping
+	  
+	  public String insertCart(Cart_Tbl cart, HttpSession session){
+	  System.out.println("장바구니 잘 저장 되나요?");
+	  String u_id=(String)session.getAttribute("id");
+	  //System.out.println("u_id : " + u_id);
+	  
+	  System.out.println("cart : " + cart);
+	  
+	  if(u_id==null) {
+		  System.out.println("아이디 값이 뭔데"+ u_id); //로그인하지 않은 상태이면 로그인 화면으로 이동 return
+		  return "redirect:/carshop/login";
+	  }
+	  Prod_Tbl prod = productService.getProduct(cart.getP_no());
+	  System.out.println("prod : " + prod);
+	  String pname = prod.getP_name();
+	  int amount = prod.getAmount();
+	  int quantity = 1; //기본수량 1 김보
+	  cart.setPname(pname);
+	  cart.setU_id(u_id);
+	  cart.setAmount(amount);
+	  cart.setQuantity(quantity);
+	  cart.setTotal(amount * quantity);
+	  System.out.println("cart : " + cart);
+	  cartService.addCart(cart); //장바구니 테이블에 저장됨
+	  
+	  return "redirect:/carshop/like"; //장바구니 목록으로 이동 }
+	  
+	  }
+	 
 	
 	
 }

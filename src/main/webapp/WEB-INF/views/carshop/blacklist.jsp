@@ -257,7 +257,7 @@
 				},
 				error: function(xhr, status, er) {
 					if(error){
-						error(er);
+						console.log(er);
 					}
 				}
 				

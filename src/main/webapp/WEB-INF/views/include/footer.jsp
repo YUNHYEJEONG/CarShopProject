@@ -28,18 +28,13 @@
 					<div class="single-footer-widget instafeed">
 						<h4 class="footer_title">member</h4>
 						<ul class="list instafeed d-flex flex-wrap">
-							<li><img src="/resources/img/gallery/r1.png" alt=""
-								style="width: 70px; hight: 70px;"></li>
-							<li><img src="/resources/img/gallery/r1.png" alt=""
-								style="width: 70px; hight: 70px;"></li>
-							<li><img src="/resources/img/gallery/r1.png" alt=""
-								style="width: 70px; hight: 70px;"></li>
-							<li><img src="/resources/img/gallery/r1.png" alt=""
-								style="width: 70px; hight: 70px;"></li>
-							<li><img src="/resources/img/gallery/r1.png" alt=""
-								style="width: 70px; hight: 70px;"></li>
-							<li><img src="/resources/img/gallery/r1.png" alt=""
-								style="width: 70px; hight: 70px;"></li>
+							<li>신승원</li>
+							<li>박재원</li>
+							<li>김보군</li>
+							<li>박성연</li>
+							<li>이보미</li>
+							<li>노가빈</li>
+							<li>윤혜정</li>
 						</ul>
 					</div>
 				</div>
@@ -56,7 +51,7 @@
 								<span class="fa fa-phone"></span> INSTAGRAM
 							</p>
 							<p>
-								@jipcok <br> tel.031-1234-5678
+								@jipcok <br> Fax.0504-093-7765
 							</p>
 
 							<p class="sm-head">

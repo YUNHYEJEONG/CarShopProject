@@ -28,6 +28,8 @@ public class ProductBuyServiceImple implements ProductBuyService {
 	private LikeMapper likeMapper;
 	@Setter(onMethod_ = @Autowired)
 	private MyPageMapper mypageMapper;
+	@Setter(onMethod_ = @Autowired)
+	private CartService cartService;
 	
 	@Override
 	public List<Prod_Tbl> getProductAll(){
@@ -57,7 +59,7 @@ public class ProductBuyServiceImple implements ProductBuyService {
 		cart.setPname(product.getP_name());
 		cart.setAmount(product.getAmount());
 		cart.setTotal(quantity * product.getAmount());
-		int addCartBoolean = cartMapper.addCart(cart);
+		int addCartBoolean =  cartService.addCart(cart);
 		return addCartBoolean == 1;
 	}
 

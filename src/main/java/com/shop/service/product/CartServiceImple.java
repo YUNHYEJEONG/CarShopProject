@@ -25,8 +25,26 @@ public class CartServiceImple implements CartService {
 
 	@Override
 	public int addCart(Cart_Tbl cart) {
-		return mapper.addCart(cart);
-
+		//System.out.println("addCartService 호출");
+		Integer count = 0;
+		try {
+			count = mapper.countCart(cart.getU_id(),cart.getP_no());//상품이 장바구니에 들어있는지 체크
+		}catch(Exception e) {
+			
+		}
+			
+		
+		
+		int result = 0;
+		if(count == null) {
+			System.out.println("addCart 호출");
+			result = mapper.addCart(cart);
+		}else {
+			result = mapper.update(cart);
+		}
+		
+		
+		return result;
 	}
 
 	/*

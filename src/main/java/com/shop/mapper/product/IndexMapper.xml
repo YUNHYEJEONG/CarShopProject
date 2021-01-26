@@ -6,10 +6,11 @@
 <mapper namespace="com.shop.mapper.product.IndexMapper">
 
 	<select id="index" resultType="com.shop.vo.Prod_Tbl">
-    <![CDATA[
-        select * from prod_tbl where amount != 0 order by hit desc limit 5
-        ]]>
-    </select>
+	<![CDATA[
+		select * from prod_tbl where amount != 0 order by hit desc limit 5
+		]]>
+	</select>
+
 	<select id="index2" resultType="com.shop.vo.Prod_Tbl">
 		<![CDATA[
 		select * from prod_tbl where amount != 0 order by p_no desc limit 4

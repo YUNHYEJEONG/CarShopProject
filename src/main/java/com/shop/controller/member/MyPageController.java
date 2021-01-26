@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,7 +53,7 @@ public class MyPageController {
 		User_Tbl userVO;
 		All_User_Tbl alluser = null;  //세션에서 user 받아오기 위해 필요 -성연 2021.01.07
 
-		try {
+		//try {
 			alluser = (All_User_Tbl) session.getAttribute("user"); //로그인 된 유저 기본정보 가져옴 -성연 2021.01.07
 			//System.out.println("셀러?" + alluser.getSeller());
 			if ((alluser.getSeller()).equals("Y")) { //기본정보에서 seller값이 Y일 때
@@ -64,10 +65,10 @@ public class MyPageController {
 				model.addAttribute("userinfo", userVO);
 				model.addAttribute("status", "user");
 			}
-		} catch (Exception e) {
-			System.out.println("셀러여부 가져오기 실패");
-			return "redirect:/carshop/error";  //문제가 생겼을 경우 에러페이지로 이동 -성연 2021.01.07
-		}
+		//} catch (Exception e) {
+		//	System.out.println("셀러여부 가져오기 실패");
+		//	return "redirect:/carshop/error";  //문제가 생겼을 경우 에러페이지로 이동 -성연 2021.01.07
+		//}
 
 
 
@@ -185,5 +186,11 @@ public class MyPageController {
 	@RequestMapping("/error") //에러페이지 작동하는지 확인하는 맵핑, 상황에 따라 지울 수도 있음 -성연 2021.01.07
 	public void errorpage() {
 		//System.out.println("에러페이지 입장");
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public String ex(Exception e) {
+		System.err.println(e.getClass());
+		return "redirect:/carshop/error";
 	}
 }

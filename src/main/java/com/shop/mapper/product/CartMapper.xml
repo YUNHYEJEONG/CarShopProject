@@ -28,13 +28,13 @@
 
 
 	<!-- cart list에는 가격이 없어서 다른테이블에서 끌어옴 HJ 2020.12.30 -->
-	<select id="sumTotal" resultType="int">
+	<!-- <select id="sumTotal" resultType="int">
 
 		select
 		nvl(sum(amount*quantity), 0)
 		from cart_tbl c, prod_tbl p
 		where c.p_no = p.p_no and u_id= #{u_id}
-	</select>
+	</select> -->
 	<!-- 금액과 상품개수를 곱한 값에 0을 더해서 0이 나오면 jsp 에서 담긴상품이 없다고 출력 -->
 	<!-- 장바구니 테이블이랑 상품 테이블을 조인하고 조건추가 -->
 	<!-- 조건은 사용자의 아이디가 같고 상품 번호가 같으면 가격을 불러 이르킨다. -->
@@ -60,12 +60,13 @@
 	<update id="update">
 	<!-- id명은 컨트롤러 명과 동일하게 -->
 		update cart_tbl
-		
-		set quantity = quantity + #{quantity}
+		set quantity = quantity + #{quantity}, total = (quantity * amount)
 		where u_id = #{u_id}
 		and p_no = #{p_no}
 	</update>
 	
-	
+	<select id="countCart" resultType="Integer">
+		select count(*) from cart_tbl where p_no = #{p_no} and u_id = #{u_id} group by u_id,p_no ;
+	</select>
 
 </mapper>
