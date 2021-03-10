@@ -42,6 +42,7 @@
 * Lombok - 자바에서 model object 생성시 멤버필드에 getter/setter 주입 반복을 annotation으로 줄여주는 라이브러리  
 * Ajax - 비동기 web application을 제작하기 위해 사용하는 기법, jQuery와 같이 이용
 * [JavaMail](http://mvnrepository.com/artifact/javax.mail/mail/1.4.7) - java mail Library
+* JSTL - jsp 개발 단순화를 위한 태그 라이브러리
 ### Others
 * git - 코드 버전관리용
 * [Trello](https://trello.com/) - 프로젝트 관리 툴
