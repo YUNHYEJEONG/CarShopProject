@@ -601,13 +601,13 @@ $(document).ready(function(){
 					rollingStart();
 				}, 3000);//다음 이미지로 롤링 애니메이션 할 시간차 , 페이지 개수 별로 자동 계산 됨
 
-				banner.mouseover(function() {
+				$banner.mouseover(function() {
 					//중지
 					clearInterval(rollingId);
 					$(this).css("cursor", "pointer");
 				});
 				//마우스 아웃되면 다시 시작
-				banner.mouseout(function() {
+				$banner.mouseout(function() {
 					rollingId = setInterval(function() {
 						rollingStart();
 					}, 3000);

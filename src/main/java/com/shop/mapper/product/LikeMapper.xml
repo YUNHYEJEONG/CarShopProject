@@ -6,16 +6,16 @@
 <mapper namespace="com.shop.mapper.product.LikeMapper">
 	<!-- 유저아이디로 장바구니테이블에서 상품목록을 가져온다.(BK/12.22) -->
 	<select id="getUserLikedList" resultType="com.shop.vo.Like_Tbl">
-		select * from Like_Tbl
+		select * from like_tbl
 		where u_id = #{u_id}
 	</select>
 	<select id="getUserLikeProduct" resultType="com.shop.vo.Like_Tbl">
-		select p_no,u_id from Like_Tbl group by p_no,u_id having
+		select p_no,u_id from like_tbl group by p_no,u_id having
 		u_id = #{u_id} and p_no = #{p_no}
 	</select>
 
 	<insert id="addLike">
-		insert into Like_Tbl(u_id,p_no)
+		insert into like_tbl(u_id,p_no)
 		values(#{u_id},#{p_no})
 	</insert>
 	<!-- 2020/01/08 yunhj 칼럼 추가에 따른 addlike 추가 -->

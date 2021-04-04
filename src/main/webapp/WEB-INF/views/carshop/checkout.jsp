@@ -323,14 +323,15 @@
 			        
 			      } else {
 	 			        //alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
+	 			        //location.href="checkout";
 	      				Swal.fire({
 	        				  icon: 'error',
 	        				  title: '결제에 실패했습니다.',
 	        				  text: rsp.error_msg,      				  
 	        			});
-	 			        
-	 			        location.href="/checkout/";
+     					
 			      	}
+			      
 			      }); 
   			});
  		
